@@ -3,7 +3,6 @@ import Container from '@/components/Container.astro'
 import GlitchingNumber from '@/components/GlitchingNumber'
 import Link from '@/components/Link.astro'
 import { NAV_LINKS } from '@/consts'
-import MobileMenu from './ui/mobile-menu'
 ---
 
 <header
@@ -11,11 +10,11 @@ import MobileMenu from './ui/mobile-menu'
   transition:persist
 >
   <Container>
-    <div class="flex items-center justify-between py-2">
+    <div class="flex items-center justify-between md:py-2 py-0.5">
       <!-- Left Navigation -->
-      <nav class="hidden items-center gap-6 sm:flex">
+      <nav class="flex min-w-24 items-center gap-3 md:min-w-28 md:gap-6">
         {
-          NAV_LINKS.slice(0, Math.floor(NAV_LINKS.length / 2)).map((item) => (
+          NAV_LINKS.slice(0, Math.ceil(NAV_LINKS.length / 2)).map((item) => (
             <Link
               href={item.href}
               class="text-sm capitalize text-foreground/60 transition-colors hover:text-foreground/80"
@@ -27,9 +26,12 @@ import MobileMenu from './ui/mobile-menu'
       </nav>
 
       <!-- Logo (Centered) -->
-      <Link href="/" class="group relative flex items-center gap-1.5 px-8 py-4">
+      <Link
+        href="/"
+        class="group relative flex items-center justify-center gap-1.5 px-8 py-4"
+      >
         <svg
-          class="h-8 fill-white stroke-white"
+          class="h-6 fill-white stroke-white md:h-8"
           viewBox="0 0 131 44"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -41,15 +43,17 @@ import MobileMenu from './ui/mobile-menu'
         <GlitchingNumber
           size={1.5}
           fadeIn={1919}
-          className="absolute bottom-4 right-8 translate-x-full translate-y-2/3"
+          className="absolute bottom-4 right-9 translate-x-full translate-y-2/3 scale-75 md:right-8 md:scale-100"
           client:load
         />
       </Link>
 
       <!-- Right Navigation -->
-      <nav class="hidden items-center gap-6 sm:flex">
+      <nav
+        class="flex min-w-24 items-center justify-end gap-3 md:min-w-28 md:gap-6"
+      >
         {
-          NAV_LINKS.slice(Math.floor(NAV_LINKS.length / 2)).map((item) => (
+          NAV_LINKS.slice(Math.ceil(NAV_LINKS.length / 2)).map((item) => (
             <Link
               href={item.href}
               class="text-sm capitalize text-foreground/60 transition-colors hover:text-foreground/80"
@@ -59,11 +63,6 @@ import MobileMenu from './ui/mobile-menu'
           ))
         }
       </nav>
-
-      <!-- Mobile Menu (only visible on small screens) -->
-      <div class="sm:hidden">
-        <MobileMenu client:load transition:persist />
-      </div>
     </div>
   </Container>
 </header>

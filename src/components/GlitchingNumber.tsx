@@ -57,7 +57,7 @@ export default function GlitchingNumber({
     >
       {/* Base number */}
       <div
-        className="bg-gradient-to-r from-sky-500 from-60% to-purple-500 bg-clip-text font-bold leading-none tracking-tighter text-transparent"
+        className="bg-gradient-to-r from-sky-500 from-60% to-purple-400 bg-clip-text font-bold leading-none tracking-tighter text-transparent"
         style={{ fontSize }}
       >
         {number}

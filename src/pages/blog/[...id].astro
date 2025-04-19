@@ -19,7 +19,7 @@ type Post = CollectionEntry<'blog'>
 const allPosts = await getCollection('blog')
 const posts = allPosts
   .filter((post) => !post.data.draft)
-  .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf())
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 const visiblePosts = posts.filter((post) => !post.data.hidden)
 
 function getAdjacentPosts(currentId: string, postList: Post[]) {
@@ -48,7 +48,7 @@ const { prev: prevPost, next: nextPost } = isSubpost
       currentPostId,
       posts
         .filter((p) => p.data.parentTitle === post.data.parentTitle)
-        .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf()),
+        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
     )
   : getAdjacentPosts(currentPostId, visiblePosts)
 
@@ -144,7 +144,7 @@ const readTime = readingTime(totalBody)
         )
       }
 
-      <PostNavigation prevPost={prevPost} nextPost={nextPost} />
+      <!-- <PostNavigation prevPost={prevPost} nextPost={nextPost} /> -->
     </section>
 
     {headings.length > 0 && <TableOfContents headings={headings} />}

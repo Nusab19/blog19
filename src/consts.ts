@@ -22,14 +22,13 @@ export const SITE: Site = {
 }
 
 export const NAV_LINKS: Link[] = [
-  { href: '/blog', label: 'blog' },
-  { href: '/portfolio', label: 'portfolio' },
   { href: '/about', label: 'about' },
   { href: '/tags', label: 'tags' },
+  { href: '/blog', label: 'blog' },
 ]
 
 export const SOCIAL_LINKS: Link[] = [
-  { href: 'nusab19.pages.dev', label: 'Website' },
+  { href: 'https://nusab19.pages.dev', label: 'Website' },
   { href: 'https://github.com/Nusab19', label: 'GitHub' },
   { href: 'https://twitter.com/Nusab19', label: 'Twitter' },
   { href: 'nusab19@duck.com', label: 'Email' },

@@ -1,8 +1,11 @@
 ---
 import BlogCard from '@/components/BlogCard.astro'
 import Container from '@/components/Container.astro'
+import { buttonVariants } from '@/components/ui/button'
 import { SITE } from '@/consts'
 import Layout from '@/layouts/Layout.astro'
+import { cn } from '@/lib/utils'
+import { Icon } from 'astro-icon/components'
 import { type CollectionEntry, getCollection } from 'astro:content'
 
 const allPosts = await getCollection(
@@ -12,7 +15,7 @@ const allPosts = await getCollection(
 
 const posts = allPosts
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.POSTS_PER_PAGE)
+  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE)
 
 const postsByYear = posts.reduce(
   (acc: Record<string, CollectionEntry<'blog'>[]>, post) => {
@@ -29,15 +32,15 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
 <Layout title={SITE.TITLE} description={SITE.DESCRIPTION}>
   <Container class="flex grow flex-col gap-y-12">
     <section class="flex flex-col gap-y-4">
-      <h1 class="text-4xl font-bold">Hi, I'm Nusab Taha 👋</h1>
-      <p class="text-lg text-muted-foreground">
+      <h1 class="md:text-4xl text-2xl font-bold">Hi, I'm Nusab Taha 👋</h1>
+      <p class="md:text-base text-sm text-muted-foreground">
         I'm a software developer passionate about building cool stuff on the web. I love exploring new technologies,
         writing about my findings, and sharing knowledge with others. Here you'll find my thoughts on programming,
         algorithms, and various tech topics.
       </p>
-      <div class="flex gap-4">
-        <a href="/about" class="text-primary hover:underline">More about me →</a>
-        <a href="/portfolio" class="text-primary hover:underline">View my work →</a>
+      <div class="flex gap-4 md:text-base text-sm flex-wrap">
+        <a href="/about" class="text-primary hover:underline text-nowrap">More about me →</a>
+        <a href="https://nusab19.pages.dev" target="_blank" rel="noopener noreferrer" class="text-extra hover:underline text-nowrap">Portfolio Website ↗</a>
       </div>
     </section>
 
@@ -56,6 +59,22 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
           </section>
         ))
       }
+    </div>
+
+    <div class="flex items-center justify-center">
+        <a
+            href="/blog"
+            class={cn(
+              buttonVariants({ variant: 'outline' }),
+              'rounded-xl group flex items-center gap-x-2',
+            )}
+        >
+            All blogs
+            <Icon
+              name="lucide:arrow-right"
+              class="size-4 transition-transform group-hover:translate-x-1"
+            />
+        </a>
     </div>
   </Container>
 </Layout>

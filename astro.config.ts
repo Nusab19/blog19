@@ -71,7 +71,7 @@ export default defineConfig({
     remarkPlugins: [remarkToc, remarkMath, remarkEmoji],
   },
   server: {
-    port: 1234,
+    port: 3000,
     host: true,
   },
   devToolbar: {

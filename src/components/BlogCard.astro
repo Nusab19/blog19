@@ -36,7 +36,7 @@ const authors = await parseAuthors(entry.data.authors ?? [])
     <Link href={`/${entry.id}`} class="flex flex-col gap-4 sm:flex-row">
       {
         entry.data.image && (
-          <div class="max-w-[275px] sm:flex-shrink-0">
+          <div class="max-w-[275px] sm:flex-shrink-0 mx-auto">
             <Image
               src={entry.data.image}
               alt={entry.data.title}
@@ -55,7 +55,7 @@ const authors = await parseAuthors(entry.data.authors ?? [])
           {entry.data.description}
         </p>
         <div
-          class="mb-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground"
+          class="mb-2 mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground"
         >
           {
             authors.length > 0 && (

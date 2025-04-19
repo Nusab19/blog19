@@ -2,6 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+----------------------------------------
+
+    Custom ScrollBar -> @Nusab19
+    Email   : nusabtaha33@gmail.com
+    Website : https://nusab19.pages.dev/
+
+----------------------------------------
+
+*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 13px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: hsl(0, 0%, 7%);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: hsl(0, 0%, 17%);
+  border-radius: 7px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(0, 0%, 23%);
+}
+
 @font-face {
   font-family: 'JetBrains Mono';
   src: url('/fonts/JetBrainsMono[wght].woff2') format('woff2-variations');
@@ -85,7 +117,7 @@
 
   html {
     color-scheme: dark;
-    @apply forced-color-adjust-none bg-background text-foreground;
+    @apply bg-background text-foreground forced-color-adjust-none;
 
     ::-webkit-scrollbar-corner {
       @apply bg-transparent;

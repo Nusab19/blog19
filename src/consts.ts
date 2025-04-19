@@ -13,21 +13,20 @@ export type Link = {
 }
 
 export const SITE: Site = {
-  TITLE: 'enscribe.dev',
-  DESCRIPTION:
-    'Freelance frontend web development and cybersecurity shenanigans.',
-  EMAIL: 'jason@enscribe.dev',
+  TITLE: 'Nusab19',
+  DESCRIPTION: 'Personal blog of Nusab Taha aka Nusab19',
+  EMAIL: 'nusabtaha33@gmail.com',
   NUM_POSTS_ON_HOMEPAGE: 2,
   POSTS_PER_PAGE: 4,
-  SITEURL: 'https://enscribe.dev',
+  SITEURL: 'https://blog19.pages.dev',
 }
 
 export const NAV_LINKS: Link[] = [
   { href: '/', label: 'home' },
   // { href: '/blog', label: 'blog' },
   // { href: '/authors', label: 'authors' },
-  // { href: '/about', label: 'about' },
-  // { href: '/tags', label: 'tags' },
+  { href: '/about', label: 'about' },
+  { href: '/tags', label: 'tags' },
 ]
 
 export const SOCIAL_LINKS: Link[] = [

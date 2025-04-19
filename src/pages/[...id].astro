@@ -71,17 +71,19 @@ const readTime = readingTime(totalBody)
   <section
     class="grid grid-cols-[minmax(0px,1fr)_min(768px,100%)_minmax(0px,1fr)] gap-y-6 *:px-4"
   >
-    {!isSubpost && post.data.image && (
-      <div class="col-span-full mx-auto w-full max-w-[700px]">
-        <Image
-          src={post.data.image}
-          alt={post.data.title}
-          width={1200}
-          height={630}
-          class="rounded-xl object-cover"
-        />
-      </div>
-    )}
+    {
+      !isSubpost && post.data.image && (
+        <div class="col-span-full mx-auto w-full max-w-[700px]">
+          <Image
+            src={post.data.image}
+            alt={post.data.title}
+            width={1200}
+            height={630}
+            class="rounded-xl object-cover"
+          />
+        </div>
+      )
+    }
     <section class="col-start-2 flex flex-col gap-y-6">
       {
         !isSubpost && (
@@ -97,7 +99,7 @@ const readTime = readingTime(totalBody)
                     {authors.map((author) => (
                       <div class="flex items-center gap-x-1.5">
                         <Image
-                          src={"https://github.com/Nusab19.png"}
+                          src={'https://github.com/Nusab19.png'}
                           alt={author.name}
                           width={24}
                           height={24}
@@ -127,7 +129,7 @@ const readTime = readingTime(totalBody)
               </div>
             </div>
             <div class="flex flex-wrap justify-center gap-2">
-              {post.data.tags?.length ? (
+              {post.data.tags?.length &&
                 post.data.tags.map((tag: string) => (
                   <a
                     href={`/tags/${tag}`}
@@ -136,12 +138,7 @@ const readTime = readingTime(totalBody)
                     <Icon name="lucide:hash" class="size-3 -translate-x-0.5" />
                     {tag}
                   </a>
-                ))
-              ) : (
-                <span class="text-sm text-muted-foreground">
-                  No tags available
-                </span>
-              )}
+                ))}
             </div>
           </div>
         )
@@ -153,7 +150,7 @@ const readTime = readingTime(totalBody)
     {headings.length > 0 && <TableOfContents headings={headings} />}
 
     <article
-      class="prose prose-sm prose-neutral col-start-2 max-w-none prose-invert [&>:first-child>*]:mt-0"
+      class="prose prose-sm prose-neutral prose-invert col-start-2 max-w-none [&>:first-child>*]:mt-0"
     >
       <Content />
     </article>

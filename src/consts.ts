@@ -24,15 +24,16 @@ export const SITE: Site = {
 
 export const NAV_LINKS: Link[] = [
   { href: '/', label: 'home' },
-  { href: '/blog', label: 'blog' },
+  // { href: '/blog', label: 'blog' },
   // { href: '/authors', label: 'authors' },
   // { href: '/about', label: 'about' },
   // { href: '/tags', label: 'tags' },
 ]
 
 export const SOCIAL_LINKS: Link[] = [
-  { href: 'https://github.com/jktrn', label: 'GitHub' },
-  { href: 'https://twitter.com/enscry', label: 'Twitter' },
-  { href: 'jason@enscribe.dev', label: 'Email' },
+  { href: 'nusab19.pages.dev', label: 'Website' },
+  { href: 'https://github.com/Nusab19', label: 'GitHub' },
+  { href: 'https://twitter.com/Nusab19', label: 'Twitter' },
+  { href: 'nusab19@duck.com', label: 'Email' },
   { href: '/rss.xml', label: 'RSS' },
 ]

@@ -7,9 +7,14 @@ import { Icon } from 'astro-icon/components'
 const { prevPost, nextPost } = Astro.props
 ---
 
-<div class="col-start-2 flex flex-col gap-4 sm:flex-row">
-  <Link
-    href={nextPost ? `/blog/${nextPost.id}` : '#'}
+<div
+  class={cn(
+    'col-start-2 flex flex-col gap-4 sm:flex-row',
+    !prevPost && !nextPost && 'hidden',
+  )}
+>
+  <!-- <Link
+    href={nextPost ? `/${nextPost.id}` : '#'}
     class={cn(
       buttonVariants({ variant: 'outline' }),
       'rounded-xl group flex items-center justify-start w-full sm:w-1/2 h-full',
@@ -29,9 +34,9 @@ const { prevPost, nextPost } = Astro.props
         >{nextPost?.data.title || 'Latest post!'}</span
       >
     </div>
-  </Link>
+  </Link> -->
   <Link
-    href={prevPost ? `/blog/${prevPost.id}` : '#'}
+    href={prevPost ? `/${prevPost.id}` : '#'}
     class={cn(
       buttonVariants({ variant: 'outline' }),
       'rounded-xl group flex items-center justify-end w-full sm:w-1/2 h-full',

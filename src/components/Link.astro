@@ -5,14 +5,17 @@ type Props = {
   href: string
   class?: string
   underline?: boolean
+  newTab?: boolean
   [key: string]: any
 }
 
-const { href, class: className, underline, ...rest } = Astro.props
+const { href, class: className, underline, newTab, ...rest } = Astro.props
 ---
 
 <a
   href={href}
+  target={(newTab ??
+    (href.startsWith('http') ? '_blank' : undefined)) as string}
   class={cn(
     'inline-block transition-colors duration-300 ease-in-out',
     underline &&

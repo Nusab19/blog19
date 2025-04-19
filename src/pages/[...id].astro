@@ -1,5 +1,4 @@
 ---
-import Breadcrumbs from '@/components/Breadcrumbs.astro'
 import Link from '@/components/Link.astro'
 import PostNavigation from '@/components/PostNavigation.astro'
 import TableOfContents from '@/components/TableOfContents.astro'
@@ -72,27 +71,8 @@ const readTime = readingTime(totalBody)
   <section
     class="grid grid-cols-[minmax(0px,1fr)_min(768px,100%)_minmax(0px,1fr)] gap-y-6 *:px-4"
   >
-    <Breadcrumbs
-      items={[
-        { href: '/blog', label: 'Blog', icon: 'lucide:archive' },
-        ...(isSubpost
-          ? [
-              {
-                href: post.data.parentSlug,
-                label: post.data.parentTitle ?? 'Parent Post',
-                icon: 'lucide:file-text',
-              },
-              {
-                label: post.data.title.split(': ')[1] ?? post.data.title,
-                icon: 'lucide:pilcrow',
-              },
-            ]
-          : [{ label: post.data.title, icon: 'lucide:file-text' }]),
-      ]}
-      class="col-start-2"
-    />
     {!isSubpost && post.data.image && (
-      <div class="col-span-full mx-auto w-full max-w-[1000px]">
+      <div class="col-span-full mx-auto w-full max-w-[700px]">
         <Image
           src={post.data.image}
           alt={post.data.title}
@@ -117,7 +97,7 @@ const readTime = readingTime(totalBody)
                     {authors.map((author) => (
                       <div class="flex items-center gap-x-1.5">
                         <Image
-                          src={author.avatar}
+                          src={"https://github.com/Nusab19.png"}
                           alt={author.name}
                           width={24}
                           height={24}

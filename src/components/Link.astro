@@ -14,8 +14,7 @@ const { href, class: className, underline, newTab, ...rest } = Astro.props
 
 <a
   href={href}
-  target={(newTab ??
-    (href.startsWith('http') ? '_blank' : undefined)) as string}
+  target={newTab !== undefined ? (newTab ? '_blank' : undefined) : (href.startsWith('http') ? '_blank' : undefined)}
   class={cn(
     'inline-block transition-colors duration-300 ease-in-out',
     underline &&

@@ -1,11 +1,9 @@
 import { getEntry } from 'astro:content'
 export async function parseAuthors(authors: string[]) {
   if (!authors || authors.length === 0) return []
-  console.log(authors)
   const parseAuthor = async (id: string) => {
     try {
       const author = await getEntry('authors', id)
-      console.log(`Fetching author with id ${id}:`, author)
       return {
         id,
         name: author?.data?.name || id,

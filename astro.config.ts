@@ -16,7 +16,7 @@ import remarkEmoji from 'remark-emoji'
 import remarkMath from 'remark-math'
 import remarkToc from 'remark-toc'
 import sectionize from '@hbsnow/rehype-sectionize'
-import { transformerNotationSkip } from './src/lib/transformerNotationSkip'
+// import { transformerNotationSkip } from './src/lib/transformerNotationSkip'
 import { transformerDiffHighlight } from './src/lib/transformerDiffHighlight'
 
 import icon from 'astro-icon'
@@ -62,7 +62,7 @@ export default defineConfig({
             transformerNotationDiff(),
             transformerMetaHighlight(),
             transformerRenderWhitespace(),
-            transformerNotationSkip(),
+            // transformerNotationSkip(),
             transformerDiffHighlight(),
           ],
         },

@@ -1,0 +1,61 @@
+---
+import BlogCard from '@/components/BlogCard.astro'
+import Container from '@/components/Container.astro'
+import { SITE } from '@/consts'
+import Layout from '@/layouts/Layout.astro'
+import { type CollectionEntry, getCollection } from 'astro:content'
+
+const allPosts = await getCollection(
+  'blog',
+  ({ data }) => !data.draft && !data.hidden,
+)
+
+const posts = allPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, SITE.POSTS_PER_PAGE)
+
+const postsByYear = posts.reduce(
+  (acc: Record<string, CollectionEntry<'blog'>[]>, post) => {
+    const year = post.data.date.getFullYear().toString()
+    ;(acc[year] ??= []).push(post)
+    return acc
+  },
+  {},
+)
+
+const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
+---
+
+<Layout title={SITE.TITLE} description={SITE.DESCRIPTION}>
+  <Container class="flex grow flex-col gap-y-12">
+    <section class="flex flex-col gap-y-4">
+      <h1 class="text-4xl font-bold">Hi, I'm Nusab Taha 👋</h1>
+      <p class="text-lg text-muted-foreground">
+        I'm a software developer passionate about building cool stuff on the web. I love exploring new technologies,
+        writing about my findings, and sharing knowledge with others. Here you'll find my thoughts on programming,
+        algorithms, and various tech topics.
+      </p>
+      <div class="flex gap-4">
+        <a href="/about" class="text-primary hover:underline">More about me →</a>
+        <a href="/portfolio" class="text-primary hover:underline">View my work →</a>
+      </div>
+    </section>
+
+    <div class="flex min-h-[calc(100vh-18rem)] flex-col gap-y-8">
+      {
+        years.map((year) => (
+          <section class="flex flex-col gap-y-4">
+            <div class="font-semibold">{year}</div>
+            <ul class="not-prose flex flex-col gap-4">
+              {postsByYear[year].map((post) => (
+                <li>
+                  <BlogCard entry={post} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </Container>
+</Layout>

@@ -6,7 +6,7 @@ import { NAV_LINKS } from '@/consts'
 ---
 
 <header
-  class="sticky top-0 z-10 bg-background/50 backdrop-blur-md"
+  class="sticky top-0 z-10 bg-background/50 backdrop-blur-md transition-transform duration-300 ease-out"
   transition:persist
 >
   <Container>
@@ -66,3 +66,28 @@ import { NAV_LINKS } from '@/consts'
     </div>
   </Container>
 </header>
+
+<script>
+  let lastScrollY = 0;
+  const header = document.querySelector('header');
+  const THRESHOLD = 50; // Scroll threshold in pixels
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    
+    // Only react to scroll after threshold is met
+    if (Math.abs(currentScrollY - lastScrollY) > THRESHOLD) {
+      // Scrolling down & past threshold - hide header
+      if (currentScrollY > lastScrollY) {
+        header?.style.setProperty('transform', 'translateY(-100%)');
+      } 
+      // Scrolling up - show header
+      else {
+        header?.style.setProperty('transform', 'translateY(0)');
+      }
+      lastScrollY = currentScrollY;
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+</script>

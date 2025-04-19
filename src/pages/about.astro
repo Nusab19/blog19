@@ -1,0 +1,58 @@
+---
+import Container from '@/components/Container.astro'
+import Layout from '@/layouts/Layout.astro'
+import { Icon } from 'astro-icon/components'
+---
+
+<Layout title="About" description="About Nusab Taha - Software Developer">
+  <Container class="flex grow flex-col gap-8">
+    <div class="flex flex-col gap-4">
+      <h1 class="text-3xl font-bold">About Me</h1>
+      
+      <div class="flex flex-col gap-6 text-lg text-muted-foreground">
+        <p>
+          Hi! I'm Nusab Taha, a passionate software developer with a love for creating elegant solutions to complex problems. 
+          I specialize in web development and enjoy working with modern technologies to build fast, reliable, and user-friendly applications.
+        </p>
+
+        <p>
+          My journey in programming started when I was in school, and since then, I've been constantly learning and exploring new technologies. 
+          I'm particularly interested in web development, system design, and open-source contributions.
+        </p>
+
+        <h2 class="text-2xl font-semibold text-foreground">Skills & Technologies</h2>
+        <div class="flex flex-wrap gap-4">
+          {
+            ['TypeScript', 'React', 'Node.js', 'Python', 'Astro', 'Next.js', 'TailwindCSS'].map((skill) => (
+              <div class="flex items-center gap-2 rounded-md bg-secondary/20 px-3 py-1.5">
+                {skill}
+              </div>
+            ))
+          }
+        </div>
+
+        <h2 class="text-2xl font-semibold text-foreground">Get in Touch</h2>
+        <div class="flex gap-4">
+          <a
+            href="https://github.com/Nusab19"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 text-muted-foreground hover:text-foreground"
+          >
+            <Icon name="fa6-brands:github" class="size-5" />
+            GitHub
+          </a>
+          <a
+            href="https://twitter.com/Nusab19"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 text-muted-foreground hover:text-foreground"
+          >
+            <Icon name="fa6-brands:twitter" class="size-5" />
+            Twitter
+          </a>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Layout>

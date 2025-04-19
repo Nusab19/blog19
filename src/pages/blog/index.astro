@@ -1,0 +1,54 @@
+---
+import BlogCard from '@/components/BlogCard.astro'
+import Container from '@/components/Container.astro'
+import Layout from '@/layouts/Layout.astro'
+import { type CollectionEntry, getCollection } from 'astro:content'
+
+const allPosts = await getCollection(
+  'blog',
+  ({ data }) => !data.draft && !data.hidden,
+)
+
+const posts = allPosts.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+)
+
+const postsByYear = posts.reduce(
+  (acc: Record<string, CollectionEntry<'blog'>[]>, post) => {
+    const year = post.data.date.getFullYear().toString()
+    ;(acc[year] ??= []).push(post)
+    return acc
+  },
+  {},
+)
+
+const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
+---
+
+<Layout title="Blog" description="Articles and thoughts by Nusab Taha">
+  <Container class="flex grow flex-col gap-8">
+    <div class="flex flex-col gap-4">
+      <h1 class="text-3xl font-bold">Blog</h1>
+      <p class="text-lg text-muted-foreground">
+        Thoughts, tutorials, and insights about programming and technology.
+      </p>
+
+      <div class="mt-4 flex flex-col gap-8">
+        {
+          years.map((year) => (
+            <section class="flex flex-col gap-4">
+              <div class="font-semibold">{year}</div>
+              <ul class="not-prose flex flex-col gap-4">
+                {postsByYear[year].map((post) => (
+                  <li>
+                    <BlogCard entry={post} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</Layout>

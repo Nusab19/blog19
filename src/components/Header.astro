@@ -2,6 +2,8 @@
 import Container from '@/components/Container.astro'
 import GlitchingNumber from '@/components/GlitchingNumber'
 import Link from '@/components/Link.astro'
+import { NAV_LINKS } from '@/consts'
+import MobileMenu from './ui/mobile-menu'
 ---
 
 <header
@@ -9,7 +11,22 @@ import Link from '@/components/Link.astro'
   transition:persist
 >
   <Container>
-    <div class="flex flex-wrap items-center justify-center gap-4 py-2">
+    <div class="flex items-center justify-between py-2">
+      <!-- Left Navigation -->
+      <nav class="hidden items-center gap-6 sm:flex">
+        {
+          NAV_LINKS.slice(0, Math.floor(NAV_LINKS.length / 2)).map((item) => (
+            <Link
+              href={item.href}
+              class="text-sm capitalize text-foreground/60 transition-colors hover:text-foreground/80"
+            >
+              {item.label}
+            </Link>
+          ))
+        }
+      </nav>
+
+      <!-- Logo (Centered) -->
       <Link href="/" class="group relative flex items-center gap-1.5 px-8 py-4">
         <svg
           class="h-8 fill-white stroke-white"
@@ -28,21 +45,25 @@ import Link from '@/components/Link.astro'
           client:load
         />
       </Link>
-      <!-- <div class="flex items-center gap-2 sm:gap-4">
-        <nav class="hidden items-center gap-4 text-sm sm:flex sm:gap-6">
-          {
-            NAV_LINKS.map((item) => (
-              <Link
-                href={item.href}
-                class="capitalize text-foreground/60 transition-colors hover:text-foreground/80"
-              >
-                {item.label}
-              </Link>
-            ))
-          }
-        </nav>
+
+      <!-- Right Navigation -->
+      <nav class="hidden items-center gap-6 sm:flex">
+        {
+          NAV_LINKS.slice(Math.floor(NAV_LINKS.length / 2)).map((item) => (
+            <Link
+              href={item.href}
+              class="text-sm capitalize text-foreground/60 transition-colors hover:text-foreground/80"
+            >
+              {item.label}
+            </Link>
+          ))
+        }
+      </nav>
+
+      <!-- Mobile Menu (only visible on small screens) -->
+      <div class="sm:hidden">
         <MobileMenu client:load transition:persist />
-      </div> -->
+      </div>
     </div>
   </Container>
 </header>

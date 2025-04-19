@@ -34,6 +34,77 @@
   background: hsl(0, 0%, 23%);
 }
 
+/* ------------------------------- */
+
+.bg-scanlines {
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.5) 50%
+  );
+  background-size: 100% 4px;
+  height: 100%;
+  width: 100%;
+  animation: scanlines 0.2s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scanlines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 4px;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+    text-shadow:
+      0 0 0 #0ff,
+      0 0 0 #f00;
+  }
+  2% {
+    transform: translate(-2px, 1px);
+    text-shadow:
+      -1px -1px 0 #0ff,
+      1px 1px 0 #f00;
+  }
+  4% {
+    transform: translate(-10px, -3px);
+    text-shadow:
+      3px 0 0 #0ff,
+      -3px 0 0 #f00;
+  }
+  6% {
+    transform: translate(10px, 2px);
+    text-shadow:
+      0 0 0 #0ff,
+      0 0 0 #f00;
+  }
+  8% {
+    transform: translate(0, 0);
+    text-shadow:
+      -3px 0 0 #0ff,
+      3px 0 0 #f00;
+  }
+  10% {
+    transform: translate(0, 0);
+    text-shadow:
+      0 0 0 #0ff,
+      0 0 0 #f00;
+  }
+  100% {
+    transform: translate(0);
+    text-shadow:
+      0 0 0 #0ff,
+      0 0 0 #f00;
+  }
+}
+
+/* ------------------------------- */
+
 @font-face {
   font-family: 'JetBrains Mono';
   src: url('/fonts/JetBrainsMono[wght].woff2') format('woff2-variations');

@@ -8,22 +8,36 @@ import { Icon } from 'astro-icon/components'
   <Container class="flex grow flex-col gap-8">
     <div class="flex flex-col gap-4">
       <h1 class="text-3xl font-bold">About Me</h1>
-      
+
       <div class="flex flex-col gap-6 text-lg text-muted-foreground">
         <p>
-          Hi! I'm Nusab Taha, a passionate software developer with a love for creating elegant solutions to complex problems. 
-          I specialize in web development and enjoy working with modern technologies to build fast, reliable, and user-friendly applications.
+          Hi! I'm Nusab Taha, a passionate software developer with a love for
+          creating elegant solutions to complex problems. I specialize in web
+          development and enjoy working with modern technologies to build fast,
+          reliable, and user-friendly applications.
         </p>
 
         <p>
-          My journey in programming started when I was in school, and since then, I've been constantly learning and exploring new technologies. 
-          I'm particularly interested in web development, system design, and open-source contributions.
+          My journey in programming started when I was in school, and since
+          then, I've been constantly learning and exploring new technologies.
+          I'm particularly interested in web development, system design, and
+          open-source contributions.
         </p>
 
-        <h2 class="text-2xl font-semibold text-foreground">Skills & Technologies</h2>
+        <h2 class="text-2xl font-semibold text-foreground">
+          Skills & Technologies
+        </h2>
         <div class="flex flex-wrap gap-4">
           {
-            ['TypeScript', 'React', 'Node.js', 'Python', 'Astro', 'Next.js', 'TailwindCSS'].map((skill) => (
+            [
+              'TypeScript',
+              'React',
+              'Node.js',
+              'Python',
+              'Astro',
+              'Next.js',
+              'TailwindCSS',
+            ].map((skill) => (
               <div class="flex items-center gap-2 rounded-md bg-secondary/20 px-3 py-1.5">
                 {skill}
               </div>

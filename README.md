@@ -1,8 +1,11 @@
 <div align="center">
 
-## blog19
+# blog19
 
-[blog19.pages.dev](https://blog19.pages.dev) is my personal blog—built with [Astro](https://astro.build/), [Tailwind](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/) from the template of [enscribe](https://github.com/jktrn/astro-erudite).
+<img src="https://github.com/user-attachments/assets/2cb2939a-d19f-44e0-b35d-cfae914822b8" width="700">
+---
+
+[blog19](https://blog19.pages.dev) is my personal blog—built with [Astro](https://astro.build/), [Tailwind](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/) from the template of [enscribe](https://github.com/jktrn/astro-erudite).
 
 It's from his blogging template, [astro-erudite](https://github.com/jktrn/astro-erudite).
 

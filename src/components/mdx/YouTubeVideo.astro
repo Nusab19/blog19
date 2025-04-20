@@ -1,0 +1,82 @@
+---
+interface Props {
+  url: string
+  title?: string
+}
+
+const { url, title } = Astro.props
+
+// Parse video ID from different YouTube URL formats
+function getYouTubeVideoId(url: string): string {
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/, // Standard and shortened URLs
+    /youtube\.com\/embed\/([^&\s]+)/, // Embed URLs
+    /youtube\.com\/v\/([^&\s]+)/, // Old embed URLs
+  ]
+
+  for (const pattern of patterns) {
+    const match = url.match(pattern)
+    if (match && match[1]) return match[1]
+  }
+
+  return url // Return as is if no pattern matches
+}
+
+const videoId = getYouTubeVideoId(url)
+const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&enablejsapi=1`
+---
+
+<section class="my-8 border-t">
+  <p class="my-4 text-center text-muted-foreground">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="transition-colors hover:text-foreground"
+    >
+      {url.replace(/^(https?:\/\/)?(www\.)?/, '')}
+    </a>
+  </p>
+  <div class="group relative aspect-video">
+    <iframe
+      id={`youtube-player-${videoId}`}
+      class="rounded-xl shadow-lg outline outline-4 outline-secondary transition-all group-hover:outline-primary/80"
+      width="100%"
+      height="100%"
+      src={embedUrl}
+      title={title || 'YouTube video'}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+</section>
+
+<script define:vars={{ videoId }}>
+  // Load YouTube API
+  if (!window.YT) {
+    const tag = document.createElement('script')
+    tag.src = 'https://www.youtube.com/iframe_api'
+    const firstScriptTag = document.getElementsByTagName('script')[0]
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+  }
+
+  // Initialize player when API is ready
+  function onYouTubeIframeAPIReady() {
+    const player = new YT.Player(`youtube-player-${videoId}`, {
+      events: {
+        onReady: (event) => {
+          // Set volume to 30% when player is ready
+          event.target.setVolume(30)
+        },
+      },
+    })
+  }
+
+  // Handle case where API might already be loaded
+  if (window.YT && window.YT.Player) {
+    onYouTubeIframeAPIReady()
+  } else {
+    // Define the callback globally if it's not already defined
+    window.onYouTubeIframeAPIReady =
+      window.onYouTubeIframeAPIReady || onYouTubeIframeAPIReady
+  }
+</script>

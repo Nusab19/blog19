@@ -2,7 +2,7 @@
 title: 'Disable Access Policy in Cloudflare Pages'
 description: 'How to disable the access policy in Cloudflare Pages without needing to use a credit card'
 date: 2025-04-20
-image: 'https://pwukkkacs0.ufs.sh/f/N8hw91y0X4dSCfuRAzYEyPRouh5Mgefdsra3mZjLFpb1nAJ0'
+image: 'https://pwukkkacs0.ufs.sh/f/N8hw91y0X4dS0vZq6Uu1N4qXjlJnL5rGIsFOuc2Mth1ib8PK'
 authors: ['nusab19']
 tags: ['fix', 'cloudflare', 'pages', 'guide']
 ---
@@ -12,21 +12,22 @@ import YouTubeVideo from '@/components/mdx/YouTubeVideo.astro'
 # What is this about?
 
 For those who don't know what **Access Policy** is in Cloudflare Pages, it's a feature that allows you to restrict access to your _preview deployments_.
-For teams and organizations, this is a great feature to have, but for personal projects, it can be a bit of a hassle.
 
-But the actual problem is, you can enable this feature while being in the free plan, but you can't disable it without upgrading to a paid plan. Kinda ridiculous, right?
+I'm not here talk about if this feature is useful or not. The actual problem is, you can enable this feature while being in the free plan, but you can't disable it without upgrading to a paid plan. Like **_"What the hell?"_** -.-
 
-As of today, April 20, 2025, there is no straight forward way to disable the access policy in Cloudflare Pages without upgrading to a paid plan. But there is a workaround.
-You can use the Cloudflare API to disable the access policy for your project.
+As of today, there is no straight forward way to disable the access policy without upgrading to a paid plan. But there's a workaround.
+You can use **Cloudflare's API** to disable the access policy for your project.
 
 So, instead of jumping between documentation and the Cloudflare dashboard, you can just follow the steps below to disable the access policy in Cloudflare Pages.
 
 If you want to see a step-by-step video guide, watch this video:
 
 <YouTubeVideo
-  url="https://youtube.com/watch?v=R1FG54FY-18"
+  url="https://youtu.be/AmrpjSy0XOM"
   title="How to disable Access Policy in Cloudflare Pages"
 />
+
+If you're a beginner, I strongly recommend that you watch the video.
 
 # Steps to disable Access Policy in Cloudflare Pages
 
@@ -41,7 +42,7 @@ Go to the [Cloudflare dashboard](https://dash.cloudflare.com/). Look at the URL.
 
 ![dash](https://pwukkkacs0.ufs.sh/f/N8hw91y0X4dS16D5PoRRMI3dxgsNaFC0p9lQbkScwjAWn6zD)
 
-Your account id will look something like this: `6a2784243169ac723308b65ae743e5ca{:bash}`
+Your account id will look like this: `6a2784243169ac723308b65ae743e5ca{:bash}`
 
 Our first step is done.
 
@@ -49,5 +50,183 @@ Our first step is done.
 
 - Go to the [API Tokens](https://dash.cloudflare.com/profile/api-tokens) page.
 - Click on **_Create Token_**
-- Go to the bottom and go with **_Create Custom Token_**
--
+- Go to the bottom and go with **_Create Custom Token_** and do these steps
+  - Token Name: Give any name
+  - Permissions: `Account` -> `Access: Apps and Policies{:js}` -> `Edit{:css}`
+  - Account Resources: `Include` -> `All Accounts` _( default )_
+  - Client IP Address Filtering: `Is Not In{:py}` -> `192.168.0.1{:js}` _(any ip other than yours)_
+  - TTL: Leave it empty
+
+Then continue. Copy the API Token. _Remember to not expose this token anywhere._
+
+We now have everything we need. We'll just need to run two `curl` commands to disable the access policy.
+
+## Commands
+
+Run the following commands in your terminal (not powershell). If you do not replace the `<VARIABLE>` with the proper instruction, you'll get an error like this:
+
+```bash
+curl: (3) URL rejected: Malformed input to a URL function
+```
+
+### Get the list of apps with Access Policy enabled
+
+Replace `<ACCOUNT ID>` with your account id and `<API TOKEN>` with the token you just created.
+
+```bash
+curl -X GET "https://api.cloudflare.com/client/v4/accounts/<ACCOUNT ID>/access/apps" -H "Authorization: Bearer <API TOKEN>" -H "Content-Type: application/json"
+```
+
+You'll get a response like this:
+
+```json
+{
+  "result": [
+    {
+      "id": "55061f3f-83e3-43d2-8ac2-47d78fa7e192",
+      "uid": "55061f3f-83e3-43d2-8ac2-47d78fa7e192",
+      "type": "self_hosted",
+      "name": "hellofromtheotherside - Cloudflare Pages",
+      "aud": "5fac07900aaf8778308a6469db5b76969e08b6e4757df404eac6a47b7d5aea9c",
+      "created_at": "2025-04-20T04:45:33Z",
+      "updated_at": "2025-04-20T04:45:33Z",
+      "domain": "*.hellofromtheotherside.pages.dev",
+      "self_hosted_domains": ["*.hellofromtheotherside.pages.dev"],
+      "destinations": [
+        {
+          "type": "public",
+          "uri": "*.hellofromtheotherside.pages.dev"
+        }
+      ],
+      "app_launcher_visible": true,
+      "allowed_idps": ["f4811179-450b-448f-8ae8-fb3bc0ed0ce8"],
+      "tags": [],
+      "auto_redirect_to_identity": false,
+      "policies": [
+        {
+          "created_at": "2025-04-20T04:45:33Z",
+          "decision": "allow",
+          "exclude": [],
+          "id": "6d63abdb-1cfd-4882-bf67-9d8eb4c2a1b4",
+          "include": [
+            {
+              "email": {
+                "email": "nusabtaha33@gmail.com"
+              }
+            }
+          ],
+          "name": "Allow Members - Cloudflare Pages",
+          "require": [],
+          "uid": "6d63abdb-1cfd-4882-bf67-9d8eb4c2a1b4",
+          "updated_at": "2025-04-20T04:45:33Z",
+          "reusable": false,
+          "precedence": 1
+        }
+      ],
+      "session_duration": "24h",
+      "enable_binding_cookie": false,
+      "http_only_cookie_attribute": true,
+      "options_preflight_bypass": false
+    }
+  ],
+  "success": true,
+  "errors": [],
+  "messages": [],
+  "result_info": {
+    "page": 1,
+    "per_page": 1000,
+    "count": 1,
+    "total_count": 1,
+    "total_pages": 1
+  }
+}
+```
+
+From the result, copy the `uid` of the app. Now run the following command where `<APP UID>` is the `uid` you just copied.
+
+```bash
+curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/<ACCOUNT ID>/access/apps/<APP UID>" -H "Authorization: Bearer <API TOKEN>" -H "Content-Type: application/json"
+```
+
+And you're done! The access policy should be disabled if you've done everything correctly.
+
+## Python code to automate the process
+
+Here is a python script that you can use to do the task for you. You just need to update the `ACCOUNT_ID{:py}` and `API_TOKEN{:py}` variable. It basically does the same thing. Just without the hassle of manually copying and pasting the app's uid.
+
+You can find the code in [this gist](https://gist.github.com/Nusab19/cbc861cc66b707e54c1e5dfb2441d795) too.
+
+```py
+#!/usr/bin/env python3
+import requests
+import sys
+
+# Configure these variables with your actual Cloudflare account details
+ACCOUNT_ID = "your_account_id_here" # eg. "6a2784243169ac723308b65ae743e5ca"
+API_TOKEN = "your_api_token_here" # eg. "a-FJVHPa04_9TS0L5RjYIcTgtLfc8NwP9PNqyd6m"
+
+def main():
+    # Check if credentials are set
+    if ACCOUNT_ID == "your_account_id_here" or API_TOKEN == "your_api_token_here":
+        print("ERROR: Please update the ACCOUNT_ID and API_TOKEN variables with your actual credentials.")
+        sys.exit(1)
+
+    # Common headers for all requests
+    headers = {
+        "Authorization": f"Bearer {API_TOKEN}",
+        "Content-Type": "application/json"
+    }
+
+    # Get all access apps
+    print(f"Fetching Access apps for account: {ACCOUNT_ID}...")
+    url = f"https://api.cloudflare.com/client/v4/accounts/{ACCOUNT_ID}/access/apps"
+
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        data = response.json()
+
+        if not data["success"]:
+            print(f"ERROR: API request failed with errors: {data['errors']}")
+            sys.exit(1)
+
+        apps = data["result"]
+        print(f"Found {len(apps)} Access app(s).")
+
+        # Delete each app
+        for app in apps:
+            app_uid = app["uid"]
+            app_name = app["name"]
+
+            print(f"Deleting Access app: {app_name} (UID: {app_uid})...")
+            delete_url = f"https://api.cloudflare.com/client/v4/accounts/{ACCOUNT_ID}/access/apps/{app_uid}"
+
+            delete_response = requests.delete(delete_url, headers=headers)
+            delete_data = delete_response.json()
+
+            if delete_data["success"]:
+                print(f"✓ Successfully deleted '{app_name}'")
+            else:
+                print(f"✗ Failed to delete '{app_name}': {delete_data['errors']}")
+
+        print("\nDeletion process complete.")
+
+    except requests.exceptions.RequestException as e:
+        print(f"ERROR: Request failed: {e}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
+```
+
+<br /><br />
+
+# So...
+
+When I faced this issue, I didn't find a straightforward way from the docs. After digging through some of the community posts, I found [this answer](https://community.cloudflare.com/t/cannot-remove-access-policy-on-pages/280622/2).
+
+Thanks to him.
+
+The main reason for writing this blog is so others don't need to do all the hassle, especially for beginners.
+
+**Peace!**

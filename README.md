@@ -2,14 +2,13 @@
 
 ## blog19
 
-[![CodeFactor]](https://www.codefactor.io/repository/github/Nusab19/blog19)
-![Stargazers]
+[blog19.pages.dev](https://blog19.pages.dev) is my personal blog—built with [Astro](https://astro.build/), [Tailwind](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/) from the template of [enscribe](https://github.com/jktrn/astro-erudite).
 
-[blog19.pages.dev](https://blog19.pages.dev) is my personal information blog—built with [Astro](https://astro.build/), [Tailwind](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/) from the template of [enscribe](https://github.com/jktrn/astro-erudite). Based on my his blogging template, [astro-erudite](https://github.com/jktrn/astro-erudite).
+It's from his blogging template, [astro-erudite](https://github.com/jktrn/astro-erudite).
 
 </div>
 
-I've modified some of the things for my own liking. But the primary design pattern and structure is the same.
+I've modified things for my own liking. But the primary design pattern and structure is mostly the same.
 I'm planning to add an on-site editor to write posts.
 
 ---
@@ -26,7 +25,7 @@ This is a list of the various technologies used to build this website:
 | Content             | [MDX](https://mdxjs.com/)                                                                          |
 | Syntax Highlighting | [Shiki](https://github.com/shikijs/shiki) + [rehype-pretty-code](https://rehype-pretty.pages.dev/) |
 | Graphics            | [Figma](https://www.figma.com/)                                                                    |
-| Deployment          | [Vercel](https://vercel.com)                                                                       |
+| Deployment          | [Cloudflare Pages](https://pages.dev)                                                              |
 
 ---
 
@@ -45,7 +44,3 @@ This is a list of the various technologies used to build this website:
    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Nusab19/blog1&type=Date" />
  </picture>
 </a>
-
----
-
-Made with ♥ by me

@@ -6,6 +6,7 @@ import TableOfContentsPrebuilt from '@/components/TableOfContentsPrebuilt.astro'
 import { badgeVariants } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import VisitorsCount from '@/components/VisitorsCount'
 import Layout from '@/layouts/Layout.astro'
 import { parseAuthors } from '@/lib/server-utils'
 import { formatDate, readingTime } from '@/lib/utils'
@@ -99,7 +100,9 @@ const readTime = readingTime(totalBody)
                     {authors.map((author) => (
                       <div class="flex items-center gap-x-1.5">
                         <Image
-                          src={'https://github.com/Nusab19.png'}
+                          src={
+                            author.avatar || 'https://github.com/Nusab19.png'
+                          }
                           alt={author.name}
                           width={24}
                           height={24}
@@ -123,6 +126,8 @@ const readTime = readingTime(totalBody)
                 </>
               )}
               <div class="flex items-center gap-2">
+                <VisitorsCount uniqueName={post.id} client:load />
+                <Separator orientation="vertical" className="h-4" />
                 <span>{formatDate(post.data.date)}</span>
                 <Separator orientation="vertical" className="h-4" />
                 <span>{readTime}</span>

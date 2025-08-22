@@ -3,9 +3,13 @@ import { Eye } from 'lucide-react'
 
 interface VisitorsCountProps {
   uniqueName: string
+  readOnly?: boolean
 }
 
-export default function VisitorsCount({ uniqueName }: VisitorsCountProps) {
+export default function VisitorsCount({
+  uniqueName,
+  readOnly,
+}: VisitorsCountProps) {
   const [count, setCount] = useState<number>(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -13,14 +17,14 @@ export default function VisitorsCount({ uniqueName }: VisitorsCountProps) {
   useEffect(() => {
     const fetchVisitorCount = async () => {
       try {
-        const response = await fetch(
-          `https://doc2-photo-bot.vercel.app/api/count?username=Nusab19&repo=blog---${uniqueName}`,
-        )
+        if (readOnly) {
+          var fetchUrl = `https://counter.nusab19.deno.net/counter/blog---${uniqueName}/get`
+        } else {
+          var fetchUrl = `https://counter.nusab19.deno.net/counter/blog---${uniqueName}`
+        }
+        const response = await fetch(fetchUrl)
         const data = await response.json()
-
-        // Extract count from finalUrl
-        const countMatch = data.finalUrl.match(/Visits-(\d+)-/)
-        const visitorCount = countMatch ? parseInt(countMatch[1]) : 0
+        const visitorCount = data?.value
 
         setCount(visitorCount)
         setLoading(false)

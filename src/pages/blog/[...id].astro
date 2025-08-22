@@ -69,6 +69,21 @@ const readTime = readingTime(totalBody)
   description={post.data.description}
   image={post.data.image?.src ?? '/static/twitter-card.png'}
 >
+  <div class="mx-auto -mt-5 mb-5 max-w-3xl px-4">
+    <Button
+      variant="outline"
+      className="w-[75px] justify-start overflow-hidden bg-background/80 backdrop-blur-sm transition-[width,background-color] duration-100 ease-out hover:w-[142px] hover:bg-black md:duration-200"
+    >
+      <a
+        href="/blog"
+        title="Back to Blog"
+        class="flex items-center gap-2 whitespace-nowrap"
+      >
+        <Icon name="lucide:arrow-left" class="-ml-2 size-4" />
+        <span id="back-to-blog">Back</span>
+      </a>
+    </Button>
+  </div>
   <section
     class="grid grid-cols-[minmax(0px,1fr)_min(768px,100%)_minmax(0px,1fr)] gap-y-6 *:px-4"
   >
@@ -189,6 +204,11 @@ const readTime = readingTime(totalBody)
 
   <script>
     document.addEventListener('astro:page-load', () => {
+      const backText = document.getElementById('back-to-blog')
+      if (backText) {
+        backText.textContent = 'Back to Blog'
+      }
+
       const scrollToTopButton = document.getElementById('scroll-to-top')
       const footer = document.querySelector('footer')
 

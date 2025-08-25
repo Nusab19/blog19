@@ -1,0 +1,101 @@
+---
+import Container from '../components/Container.astro'
+import Layout from '../layouts/Layout.astro'
+
+const title = "Legal • Nusab's Blog"
+const description =
+  "Legal information and disclaimers for Nusab's personal website and blog."
+---
+
+<Layout title={title} description={description}>
+  <Container>
+    <h1 class="mb-8 text-4xl font-bold">Legal</h1>
+
+    <section class="mb-8">
+      <h2 class="mb-4 text-2xl font-bold">Disclaimer</h2>
+      <p class="mb-4">
+        Any opinions expressed here are my own and don't reflect the views of my
+        employers (past or present) or school.
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="mb-4 text-2xl font-bold">Credits</h2>
+      <p class="mb-4">
+        This website makes use of quite a few resources created by other people,
+        and they deserve recognition for their work.
+      </p>
+      <ul class="list-inside list-disc space-y-2">
+        <li>
+          Template: <a
+            target="_blank"
+            href="https://github.com/jktrn/astro-erudite"
+            class="text-primary hover:underline">Astro Erudite</a
+          > by <a
+            target="_blank"
+            href="https://enscribe.dev/"
+            class="text-muted-foreground hover:underline">enscribe.dev</a
+          >
+        </li>
+        <li>
+          Styles and Icons: <a
+            target="_blank"
+            href="https://tailwindcss.com"
+            class="text-primary hover:underline">Tailwind CSS</a
+          >, <a
+            target="_blank"
+            href="https://lucide.dev/icons/"
+            class="text-primary hover:underline">Lucide Icons</a
+          >
+        </li>
+        <li>
+          UI Components: <a
+            target="_blank"
+            href="https://ui.shadcn.com"
+            class="text-primary hover:underline">shadcn/ui</a
+          >
+        </li>
+        <li>
+          Hosting: <a
+            target="_blank"
+            href="https://pages.cloudflare.com"
+            class="text-primary hover:underline">Cloudflare Pages</a
+          >
+        </li>
+      </ul>
+    </section>
+
+    <section class="mb-5">
+      <h2 class="mb-4 text-2xl font-bold">License</h2>
+      <p class="mb-4">
+        The text content of this site (along with any accompanying images) is
+        licensed under the
+        <a
+          target="_blank"
+          href="http://creativecommons.org/licenses/by-sa/4.0/"
+          class="text-primary hover:underline"
+          >Creative Commons Attribution-ShareAlike 4.0 International License</a
+        >. This means, in a nutshell, that you can copy, modify, and
+        redistribute anything I write here, so long as you:
+      </p>
+      <ol class="mb-4 ml-5 list-inside list-decimal space-y-2">
+        <li>Provide attribution, and</li>
+        <li>Agree to distribute your modifications under the same license.</li>
+      </ol>
+      <p class="mb-4">
+        The reasoning here is simple. I write because I enjoy it, and because I
+        hope that the things I write about may be helpful or entertaining to
+        others. If more help or entertainment may be brought to others by
+        improving my work, I would love for that to happen, so long as I get
+        credit for my work, and so long as others have the chance to continue
+        the cycle of improvement.
+        <br />
+        <br />
+        - Nusab Taha
+      </p>
+      <code class="mt-5 block text-center text-sm text-muted-foreground"
+        >peace! :)</code
+      >
+    </section>
+  </Container>
+</Layout>

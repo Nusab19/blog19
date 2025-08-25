@@ -7,16 +7,16 @@ import { Separator } from './ui/separator'
 
 <footer class="py-4">
   <Container>
-    <Separator className='mb-3 mt-5'/>
+    <Separator className="mb-3 mt-5" />
     <div
       class="flex flex-col items-center justify-center gap-y-2 sm:flex-row sm:justify-between"
     >
       <div class="flex items-center">
         <p class="text-center text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} Nusab Taha
+          &copy; Nusab Taha (2024-{new Date().getFullYear()}) •
         </p>
       </div>
-      <SocialIcons links={SOCIAL_LINKS} />
+        <SocialIcons links={SOCIAL_LINKS} />
     </div>
   </Container>
 </footer>

@@ -33,4 +33,6 @@ export const SOCIAL_LINKS: Link[] = [
   { href: 'https://twitter.com/Nusab19', label: 'Twitter' },
   { href: 'nusab19@duck.com', label: 'Email' },
   { href: '/rss.xml', label: 'RSS' },
+  { href: '/legal', label: 'Legal' },
+
 ]

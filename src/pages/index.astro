@@ -32,15 +32,23 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
 <Layout title={SITE.TITLE} description={SITE.DESCRIPTION}>
   <Container class="flex grow flex-col gap-y-12">
     <section class="flex flex-col gap-y-4">
-      <h1 class="md:text-4xl text-2xl font-bold">Hi, I'm Nusab Taha 👋</h1>
-      <p class="md:text-base text-sm text-muted-foreground">
-        I'm a software developer passionate about building cool stuff on the web. I love exploring new technologies,
-        writing about my findings, and sharing knowledge with others. Here you'll find my thoughts on programming,
-        algorithms, and various tech topics.
+      <h1 class="text-2xl font-bold md:text-4xl">Hi, I'm Nusab Taha 👋</h1>
+      <p class="text-sm text-muted-foreground md:text-base">
+        I'm a software developer who loves building cool stuff on the web. I
+        love exploring new technologies.
+        <br />
+        I write about my findings, and sharing knowledge with others.
       </p>
-      <div class="flex gap-4 md:text-base text-sm flex-wrap">
-        <a href="/about" class="text-primary hover:underline text-nowrap">More about me →</a>
-        <a href="https://nusab19.pages.dev" target="_blank" rel="noopener noreferrer" class="text-extra hover:underline text-nowrap">Portfolio Website ↗</a>
+      <div class="flex flex-wrap gap-4 text-sm md:text-base">
+        <a href="/about" class="text-nowrap text-primary hover:underline"
+          >More about me →</a
+        >
+        <a
+          href="https://nusab19.pages.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-nowrap text-extra hover:underline">Portfolio Website ↗</a
+        >
       </div>
     </section>
 
@@ -62,19 +70,19 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
     </div>
 
     <div class="flex items-center justify-center">
-        <a
-            href="/blog"
-            class={cn(
-              buttonVariants({ variant: 'outline' }),
-              'rounded-xl group flex items-center gap-x-2',
-            )}
-        >
-            All blogs
-            <Icon
-              name="lucide:arrow-right"
-              class="size-4 transition-transform group-hover:translate-x-1"
-            />
-        </a>
+      <a
+        href="/blog"
+        class={cn(
+          buttonVariants({ variant: 'outline' }),
+          'rounded-xl group flex items-center gap-x-2',
+        )}
+      >
+        All blogs
+        <Icon
+          name="lucide:arrow-right"
+          class="size-4 transition-transform group-hover:translate-x-1"
+        />
+      </a>
     </div>
   </Container>
 </Layout>

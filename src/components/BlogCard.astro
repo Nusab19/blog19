@@ -87,7 +87,7 @@ const authors = await parseAuthors(post.data.authors ?? [])
     </Link>
     {
       post.data.tags && (
-        <div class="flex flex-wrap gap-2 self-end md:-mr-2 md:w-3/5">
+        <div class="mx-auto flex flex-wrap gap-2 self-end md:-mr-2 md:w-3/5">
           {post.data.tags.map((tag: string) => (
             <a href={`tags/${encodeURIComponent(tag)}`} class="no-underline">
               <Badge

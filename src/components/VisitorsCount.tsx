@@ -18,9 +18,9 @@ export default function VisitorsCount({
     const fetchVisitorCount = async () => {
       try {
         if (readOnly) {
-          var fetchUrl = `https://counter.nusab19.deno.net/counter/blog---${uniqueName}/get`
+          var fetchUrl = `https://counter-seven-flame.vercel.app/api/counter/blog---${uniqueName}/get`
         } else {
-          var fetchUrl = `https://counter.nusab19.deno.net/counter/blog---${uniqueName}`
+          var fetchUrl = `https://counter-seven-flame.vercel.app/api/counter/blog---${uniqueName}`
         }
         const response = await fetch(fetchUrl)
         const data = await response.json()

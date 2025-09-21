@@ -13,7 +13,7 @@ export type Link = {
 }
 
 export const SITE: Site = {
-  TITLE: 'Blog19',
+  TITLE: 'Nusab19 Blog',
   DESCRIPTION: 'Personal blog of Nusab Taha aka Nusab19',
   EMAIL: 'nusabtaha33@gmail.com',
   NUM_POSTS_ON_HOMEPAGE: 2,

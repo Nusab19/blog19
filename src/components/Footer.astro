@@ -9,14 +9,25 @@ import { Separator } from './ui/separator'
   <Container>
     <Separator className="mb-3 mt-5" />
     <div
-      class="flex flex-col items-center justify-center gap-y-2 sm:flex-row sm:justify-between"
+      class="flex flex-col items-center justify-center gap-y-1 sm:flex-row sm:justify-between"
     >
-      <div class="flex items-center">
-        <p class="text-center text-sm text-muted-foreground">
-          &copy; Nusab Taha (2024-{new Date().getFullYear()}) •
-        </p>
+      <p class="text-center text-sm text-muted-foreground">
+        &copy; Nusab Taha (2024-{new Date().getFullYear()})
+      </p>
+      <span class="hidden text-xl text-muted-foreground/50 md:block">•</span>
+      <div class="w-screen overflow-hidden whitespace-nowrap md:hidden">
+        <div class="animate-marquee inline-block">
+          <span class="mr-20 text-xl text-muted-foreground/50">¬.¬</span>
+          <span class="mx-20 text-xl text-muted-foreground/50">`⁓´</span>
+          <span class="mx-20 text-xl text-muted-foreground/50">&gt;‸&lt;</span>
+          <span
+            class="mx-20 inline-block scale-x-[-1] text-xl text-muted-foreground/50"
+            >¬.¬</span
+          >
+          <span class="text-md ml-20 text-muted-foreground/30">siuuu...</span>
+        </div>
       </div>
-        <SocialIcons links={SOCIAL_LINKS} />
+      <SocialIcons links={SOCIAL_LINKS} />
     </div>
   </Container>
 </footer>

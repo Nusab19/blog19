@@ -11,8 +11,8 @@ import Layout from '@/layouts/Layout.astro'
 import { parseAuthors } from '@/lib/server-utils'
 import { formatDate, readingTime } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
-import { Image } from 'astro:assets'
 import { type CollectionEntry, getCollection, render } from 'astro:content'
+import SmartImage from '@/components/SmartImage.astro'
 
 type Props = CollectionEntry<'blog'>
 type Post = CollectionEntry<'blog'>
@@ -67,7 +67,7 @@ const readTime = readingTime(totalBody)
 <Layout
   title={post.data.title}
   description={post.data.description}
-  image={post.data.image?.src ?? '/static/twitter-card.png'}
+  image={post.data.image ?? '/static/twitter-card.png'}
 >
   <div class="mx-auto -mt-5 mb-5 max-w-3xl px-4">
     <Button
@@ -90,12 +90,14 @@ const readTime = readingTime(totalBody)
     {
       !isSubpost && post.data.image && (
         <div class="col-span-full mx-auto w-full max-w-[700px]">
-          <Image
+          <SmartImage
             src={post.data.image}
             alt={post.data.title}
             width={1200}
             height={630}
             class="rounded-xl object-cover"
+            compress={post.data.compress}
+            quality={post.data.quality}
           />
         </div>
       )
@@ -114,7 +116,7 @@ const readTime = readingTime(totalBody)
                   <div class="flex items-center gap-x-2">
                     {authors.map((author) => (
                       <div class="flex items-center gap-x-1.5">
-                        <Image
+                        <SmartImage
                           src={
                             author.avatar || 'https://github.com/Nusab19.png'
                           }

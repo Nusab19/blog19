@@ -33,6 +33,26 @@ export default defineConfig({
     react(),
     icon(),
   ],
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        // Don't transform images marked as uncompressed
+        transform: (options: { src: { metadata?: { uncompressedImage?: boolean } } }) => {
+          if (options.src.metadata?.uncompressedImage === true) {
+            return {
+              format: 'original' as const,
+              quality: 100
+            };
+          }
+          return {
+            format: 'webp',
+            quality: 80
+          };
+        }
+      }
+    }
+  },
   markdown: {
     syntaxHighlight: false,
     rehypePlugins: [

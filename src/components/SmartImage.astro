@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: string | ImageMetadata;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  compress?: boolean;
+  quality?: number;
+}
+
+const { 
+  src, 
+  alt, 
+  width, 
+  height, 
+  class: className, 
+  compress = false,
+  quality = 80
+} = Astro.props;
+
+// Helper function to determine if a path is an absolute public path
+const isPublicPath = (path: string) => path.startsWith('/');
+---
+
+{
+  typeof src === 'string' ? (
+    // All string paths (public or external) bypass optimization
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      class={className}
+    />
+  ) : compress ? (
+    // Use Astro's Image component with compression when requested
+    <Image
+      src={src}
+      alt={alt}
+      width={width || src.width}
+      height={height || src.height}
+      class={className}
+      quality={quality}
+    />
+  ) : (
+    // No compression for ImageMetadata
+    <img
+      src={src.src}
+      alt={alt}
+      width={width || src.width}
+      height={height || src.height}
+      class={className}
+    />
+  )
+}

@@ -1,7 +1,8 @@
 ---
 name: 'Nusab Taha'
 pronouns: 'he/him'
-avatar: '/images/profile.jpg'
+avatar: 'https://github.com/Nusab19.png'
+# avatar: 'https://blog19.pages.dev/static/images/profile.jpg'
 bio: Meow ^ω^
 website: 'https://nusab19.pages.dev'
 twitter: 'https://twitter.com/Nusab19'

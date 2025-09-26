@@ -14,20 +14,17 @@ interface Props {
 const { 
   src, 
   alt, 
-  width, 
-  height, 
+  width = 1200, 
+  height = 630, 
   class: className, 
   compress = false,
   quality = 80
 } = Astro.props;
-
-// Helper function to determine if a path is an absolute public path
-const isPublicPath = (path: string) => path.startsWith('/');
 ---
 
 {
   typeof src === 'string' ? (
-    // All string paths (public or external) bypass optimization
+    // For string paths (public or external URLs), we can't use compression
     <img
       src={src}
       alt={alt}
@@ -36,22 +33,22 @@ const isPublicPath = (path: string) => path.startsWith('/');
       class={className}
     />
   ) : compress ? (
-    // Use Astro's Image component with compression when requested
+    // Use Image component with compression for imported images
     <Image
       src={src}
       alt={alt}
-      width={width || src.width}
-      height={height || src.height}
+      width={width}
+      height={height}
       class={className}
       quality={quality}
     />
   ) : (
-    // No compression for ImageMetadata
+    // No compression for imported images
     <img
       src={src.src}
       alt={alt}
-      width={width || src.width}
-      height={height || src.height}
+      width={width}
+      height={height}
       class={className}
     />
   )
